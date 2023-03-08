@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title> Import and Export Excel data to database Using Laravel 5.8 </title>
+	<title> excel </title>
 	<link rel="stylesheet"
 		href=
 "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
@@ -29,13 +29,29 @@
 					</a> --}}
 				</form>
 				<br>
+
+				
+
+
+				<br>
+
 				@if (\Session::has('success'))
     				<div class="alert alert-success">
        				 <ul>
            				<li>{!! \Session::get('success') !!}</li>
        				 </ul>
 
-				
+				@endif
+				@if ($errors->any())
+					<div class="alert alert-danger">
+						<ul>
+							@foreach ($errors->all() as $error)
+								<li>{{ $error }}</li>
+							@endforeach
+						</ul>
+					</div>
+				@endif
+
 
 			{{-- starts here 
 				//Creating on web table for the Imported data
@@ -44,6 +60,8 @@
 					
 					<thead>
 						<tr>
+						
+						  <th scope="col">Student ID</th>
 						  <th scope="col">Name</th>
 						  <th scope="col">email</th>  
 						</tr>
@@ -54,22 +72,21 @@
 							@foreach ($usersData as $user)
 								<tr>
 									{{-- <th scope="row">{{$userdata->id}}</th> --}}
-									<td>{{$user->name}}</td>
+									<td>{{$user->Student_Id}}</td>
+									<td>{{$user->name}}</td> 
 									<td>{{$user->email}}</td>
-									{{-- <td>@mdo</td> --}}
 								</tr>
 							@endforeach
 						@else
 							<tr>
 								<th scope="row">Error</th>
-								{{-- <td>Jacob</td>
-								<td>Thornton</td>							 --}}
+													
 							</tr>
 						@endif
 					  </tbody>
 
 				  </table>
-				  @endif
+				  {{-- @endif --}}
 			{{-- ends here --}}
     </div>
 

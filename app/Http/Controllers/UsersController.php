@@ -13,16 +13,16 @@ class UsersController extends Controller
 {
     //
   
-      public  function importView(Request $request){
-            $userData=User::get();
-            return view('importFile',['usersData'=>$userData]);//line 18 ko $usersData nai Frontend ko php text use garera dekhaune ho not $userData
-        }
+      // public  function importView(Request $request){
+      //       $userData=User::get();
+      //       return view('importFile',['usersData'=>$userData]);//line 18 ko $usersData nai Frontend ko php text use garera dekhaune ho not $userData
+      //   }
         
-        public function import(Request $request){
-            Excel::import(new UsersImport, $request->file('file')->store("import.xlsx"));
-          //  return redirect()->back();
-          return redirect()->back()->with('success', 'Your Data Has been Exported.');
-        }
+      //   public function import(Request $request){
+      //       Excel::import(new UsersImport, $request->file('file')->store("import.xlsx"));
+      //     //  return redirect()->back();
+      //     return redirect()->back()->with('success', 'Your Data Has been Exported.');
+      //   }
 
 
         // public function Userslist(){
