@@ -5,6 +5,8 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\emailController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminPostController;
+use App\Http\Controllers\ExcelController;
+use App\Http\Controllers\PaymentController;
 use App\Notifications\EmailNotification;
 /*
 |--------------------------------------------------------------------------
@@ -28,28 +30,15 @@ Route::view('/khalti','khalti');
 Route::view('/navbar','navbar');
 //Route::view('/email','email');
 //Route::view('/excel','excel');
-
-
-// Route::get('/test-mail',function(){
-
-//     $message = "Testing mail";
-
-//     \Mail::raw('Hi, welcome!', function ($message) {
-//       $message->to('Sachinshrestha@kcc.edu.np')
-//         ->subject('Testing mail');
-//     });
-
-//     dd('sent');
-
-// });
-
-//Ends here
 	//excel Routes
-	Route::get('/file-import',[\App\Http\Controllers\ExcelController::class,'importView'])->name('importview');
+	Route::get('/file-import',[ExcelController::class,'importView'])->name('importview');
 
-	Route::post('/import',[\App\Http\Controllers\ExcelController::class,'import'])->name('import');
-
-  // Route::get('/delete/{id}',[\App\Http\Controllers\ExcelController::class,'delete'])->name('deleteRow');
+	Route::post('/import',[ExcelController::class,'import'])->name('import');
+		//delete row 
+		Route::delete('/import/{id}', [ExcelController::class, 'destroy'])->name('deleteRow');
+		//updaterow
+		Route::put('/import/{id}', [ExcelController::class,'update'])->name('updateRow');
+	//end of ExcelRoutes
 //
 	// Route::get('/export-users',[UserController::class,'UsersExport'])->name('usersExport');
 	// Route::get('/records',[ExcelController::class,'index'])->name('viewrecords');
@@ -62,7 +51,9 @@ Route::view('/navbar','navbar');
 Route::get('/post', [AdminPostController::class,'createPost'])->name('adminpost');
 Route::post('/post', [AdminPostController::class,'showPost']);
 Route::get('/post/{id}', [AdminPostController::class,'viewSinglePost']);
-Route::get('/viewsinglepost/{post}',[AdminPostController::class,'singlePost']);
+Route::get('/viewpost/{post}',[AdminPostController::class,'singlePost']);
+Route::get('/PostDashboard',[AdminPostController::class,'PostDashboard']);
+
 
 //Mail Route 
       //email related routes only
@@ -81,5 +72,10 @@ Route::get('/storeSingleEmail{id}', [emailController::class, 'emailView'])->name
 
 Route::post('/storeSingleEmail{id}', [emailController::class, 'storeSingleEmail'])->name('storeSingleEmail');
 
+
+
+//payment routes
+Route::get('/payment', [PaymentController::class, 'create'])->name('create');
+Route::post('/payments', [PaymentController::class, 'store'])->name('store');
 ?>
 

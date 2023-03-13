@@ -21,10 +21,12 @@ class ExcelModel extends Authenticatable
      */
     protected $table = 'excels';
     protected $fillable = [
-        'Student_Id',
+        'studentid',
         'name',
         'email',
-        'password',
+        'faculty',
+        'program',
+        'semester',
       //  "value_id",
     ];
 

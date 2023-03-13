@@ -16,16 +16,16 @@ class CreateExcelsTable extends Migration
     {
         Schema::create('excels', function (Blueprint $table) {
             $table->id();
-            $table->integer('Student_Id')->nullable();
+            $table->integer('studentid')->nullable(false)->unique();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('password');
-
+            $table->enum('faculty',['Science and Technology','Management']);
+            $table->enum('program', ['BE Computer', 'BE Civil','BBA','BIT','BCA']);
+            $table->enum('semester',['1','2','3','4','5','6','7','8'])->nullable(false);
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *

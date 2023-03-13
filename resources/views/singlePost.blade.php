@@ -15,6 +15,7 @@
                      
                         
                      <div class="body-content">
+                      {{-- {{dd($post)}} --}}
                         {{$post->id}}.
                         {{$post->body}}
                      </div>

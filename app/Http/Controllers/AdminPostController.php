@@ -25,10 +25,10 @@ class AdminPostController extends Controller
 
     }
 
-    public function viewSinglePost($id){
-        //return $id;
-        return view('PostDashboard');
-    }
+    // public function viewSinglePost($id){
+    //     //return $id;
+    //     return view('PostDashboard');
+    // }
 
     public function singlePost(AdminPostModel $post){
        // return view('singlePost');
@@ -37,6 +37,13 @@ class AdminPostController extends Controller
 
     public function createPost(){
         return view('adminpost');
+    }
+
+    public function postDashboard(AdminPostModel $posts){
+        $title= $posts->title;
+        $body= $posts->body;
+        dd($posts);
+        return view('PostDashboard',['post'=>$posts,'title'=>$title,'body'=>$body]);
     }
 
 
