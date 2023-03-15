@@ -1,4 +1,11 @@
-<html>
+
+
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12"><html>
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://khalti.s3.ap-south-1.amazonaws.com/KPG/dist/2020.12.17.0.0.0/khalti-checkout.iffe.js"></script>
@@ -12,7 +19,7 @@
     </div>
 @endif
 
-<p>form for khalti</p>
+<h3>Form for khalti Payment</h3>
 <form method="POST" action="{{route('store')}}">
     @csrf
 
@@ -123,7 +130,7 @@
     
     <br>
 
-    <p class="valueClass">Hello</p>
+    {{-- <p class="valueClass">Hello</p> --}}
 </body>
 
 
@@ -198,3 +205,7 @@
         }
     </script>
 </html>
+</div>
+</div>
+</div>
+@endsection

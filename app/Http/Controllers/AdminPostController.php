@@ -6,6 +6,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\AdminPostModel; 
 
+use App\Models\User; 
+
 class AdminPostController extends Controller
 {
     public function showPost(Request $request){
@@ -14,15 +16,15 @@ class AdminPostController extends Controller
             'title'=>'required',
             'body'=>'required',
         ]);
+            $name=auth()->user()->name;
+            $adminFields['AdminName']= $name;
             $adminFields['title']= strip_tags($adminFields['title']);
             $adminFields['body'] = strip_tags($adminFields['body']);
 
             //Using AdminPostModel 
             AdminPostModel::create($adminFields);
-
-
-            return "Your notice has been saved in the database with ID:".$adminFields['title'];
-
+            // return "Your notice has been saved in the database with ID:".$adminFields['title'];
+            return redirect()->route('adminpost');
     }
 
     // public function viewSinglePost($id){
@@ -40,11 +42,21 @@ class AdminPostController extends Controller
     }
 
     public function postDashboard(AdminPostModel $posts){
-        $title= $posts->title;
-        $body= $posts->body;
-        dd($posts);
-        return view('PostDashboard',['post'=>$posts,'title'=>$title,'body'=>$body]);
+        $posts = AdminPostModel::all();
+return view('postDashboard', compact('posts'));
+        // dd($posts);
+
+    }
+    public function destroy($id)
+    {
+        $post = AdminPostModel::findOrFail($id);
+        $post->delete();
+        return redirect()->route('postdashboard');
     }
 
-
+    public function index()
+    {
+        $posts = AdminPostModel::all();
+        return view('showposts', compact('posts'));
+    }
 }

@@ -1,10 +1,9 @@
-@extends('navbar')
+@extends('layouts.app')
 
-<br>
-<br>
-<br><br><br>
-<br><br><br>
-@extends('layout.post')
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
 
 <br><br>
 <div class="container">
@@ -25,3 +24,7 @@
                  
 </div>
 
+</div>
+</div>
+</div>
+@endsection

@@ -1,9 +1,15 @@
-@extends('layout.app')
-<h1 class="text-center">Email </h1>
+
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+<h1 class="text-center">Email for {{$data->name}} </h1>
 <hr>
 
 
-<div class="container mt-2 mb-2 pd-2">
+<div class="container mt-2 mb-2 pdpwe-2">
     <form action="{{ route('storeSingleEmail',$data->id) }}" method="POST">
         @csrf
         <div class="form-group mt-2 mb-2 pd-2">
@@ -36,3 +42,7 @@
 
     </form>
 </div>
+</div>
+</div>
+</div>
+@endsection

@@ -41,8 +41,8 @@ class emailController extends Controller
         Notification::send($user, new emailNotification($details));
 
         // return redirect()->view('/mail');
-        return view('mail', ['message' => 'Email sent successfully!','users'=>$user]);
-       // return redirect()->back()->with(['success','Email Sent Succesfully','users'=>$user]);
+        // return view('mail', ['message' => 'Email sent successfully!','users'=>$user]);
+       return redirect()->back()->with(['success','Email Sent Succesfully','users'=>$user]);
     }
 
     //send email to all

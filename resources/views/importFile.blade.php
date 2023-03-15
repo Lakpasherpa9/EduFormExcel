@@ -1,5 +1,9 @@
-<!DOCTYPE html>
-<html>
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-16">
 
 <head>
 	<title> excel </title>
@@ -7,7 +11,7 @@
 	<style>
 						.btn-label {
 							position: relative;
-							left: -12px;
+							left: 12px;
 							display: inline-block;
 							padding: 6px 12px;
 							background: rgba(0, 0, 0, 0.15);
@@ -24,11 +28,11 @@
 						}
 	</style>
 </head>
-<body>
+<body>	
 	<div class="container">
 		<div class="card bg-light mt-3">
 			<br><br>
-			<div class="card-body">
+			<div class="card-body">	
 				<form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
 					@csrf
 					<input type="file" name="file" class="form-control" onchange="console.log(this.files[0])">
@@ -88,7 +92,11 @@
 					</ul>
 				@endif
 
-
+				<form action="{{ route('search') }}" method="GET">
+					<input type="text" name="query" placeholder="Search...">
+					<button type="submit">Search</button>
+				</form>
+				<table class="table table-hover">
 					{{-- starts here 
 				//Creating on web table for the Imported data
 				--}}
@@ -188,5 +196,7 @@
         filterRows();
     });
 </script>
-
-</html>
+</div>
+</div>
+</div>
+@endsection

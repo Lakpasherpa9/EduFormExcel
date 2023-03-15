@@ -10,7 +10,10 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Validation\ValidationException;
 use Maatwebsite\Excel\Exceptions\NoTypeDetectedException;
-use DB;
+// use DB;
+use App\Providers\AppServiceProvider;
+use Illuminate\Support\Facades\DB;
+
 
 
 class ExcelController extends Controller
@@ -98,6 +101,65 @@ class ExcelController extends Controller
         return redirect()->back()->with('success', 'Student Data has been deleted!');
         }//ends here
       
- 
+
+        //searching function
+public function search(Request $request)
+{
+    $querys = $request->input('query');
+
+
+    // $results = DB::table('excels')
+    //     ->whereRaw('LOWER(name) = ? OR UPPER(name) = ?', [strtolower($query), strtoupper($query)])
+    //     ->get();
+    
+    $results = ExcelModel::where(function ($query) use ($querys) {
+      $query->where('name', 'like', '%'.$querys.'%')
+          ->orWhere('email', 'like', '%'.$querys.'%');
+  })->get();
+    // Filter the results to find the matching user by name
+    // $users = $results->firstWhere('name', $query);
+
+    return view('search', ['results'=>$results]);
+}
+
+//Viewing and searching students
+public function viewStudents(Request $request)
+{
+    $faculty = $request->input('faculty');
+    $program = $request->input('program');
+    // $semester = $request->input('semester');
+    
+    // $datas = ExcelModel::where('faculty', $faculty)
+    //                 ->where('program', $program)
+    //                 ->where('semester', $semester)
+    //                 ->get();
+
+    // return view('adminHome', compact('data'));
+    // View::share('data', $data);
+    // return view('adminHome',$data);
+    // return view('adminHome')->with('datas', $datas);
+
+        $faculties = ExcelModel::select($faculty)->distinct()->get();
+        $programs = ExcelModel::where('faculty', $faculty)->where('program', $program)->distinct()->get();
+        // $semesters = ExcelModel::select('semester')->distinct()->get();
+        $semesters = ExcelModel::where('faculty', $faculty)
+        ->where('program', $program)
+        ->select('semester')
+        ->distinct()
+        ->get();
+        // $faculty = $request->input('faculty');
+        // $program = $request->input('program');
+        // $semester = $request->input('semester');
+        
+        $data = ExcelModel::where('faculty', $faculties)
+                        ->where('program', $programs)
+                        ->where('semester', $semesters)
+                        ->get();
+                        dd($data);
+                        return view('adminHome')->with('data', $data)
+                        ->with('faculty', $faculties)
+                        ->with('programs', $programs)
+                        ->with('semesters', $semesters);
+  }
 }   
   

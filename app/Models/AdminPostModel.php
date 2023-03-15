@@ -10,8 +10,8 @@ class AdminPostModel extends Model
     use HasFactory;
 
     protected $table='posts';
-    protected $fillable=['title','body'];
+    protected $fillable=['AdminName','title','body'];
     //Posts ko title ko lagi
-
- 
+    
+    
 }

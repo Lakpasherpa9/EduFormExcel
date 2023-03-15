@@ -1,4 +1,4 @@
-<html>
+{{-- <html>
 <body class="text-center">
     
     <main class="form-signin w-100 m-auto">
@@ -26,4 +26,4 @@
     </main> 
 </body>
 
-</html>
+</html> --}}
