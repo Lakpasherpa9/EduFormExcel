@@ -80,7 +80,7 @@
                 @endif
                 <ul class="navbar-nav me-auto">
                     <a class="navbar-brand" href="{{ route('about') }}">
-                        {{ 'About' }}  
+                        {{ 'Home' }}  
                     </a>
                 </ul>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -117,12 +117,18 @@
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
-                                    </a>
+                                    </a> <a class="dropdown-item" href="{{ route('password.request') }}"
+                                    onclick="event.preventDefault();
+                                                  document.getElementById('logout-form').submit();">
+                                     {{ __('Change Password') }}
+                                 </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        
                                         @csrf
                                     </form>
                                 </div>
+                                
                             </li>
                         @endguest
                     </ul>

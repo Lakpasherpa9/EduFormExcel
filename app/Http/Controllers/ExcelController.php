@@ -122,44 +122,5 @@ public function search(Request $request)
     return view('search', ['results'=>$results]);
 }
 
-//Viewing and searching students
-public function viewStudents(Request $request)
-{
-    $faculty = $request->input('faculty');
-    $program = $request->input('program');
-    // $semester = $request->input('semester');
-    
-    // $datas = ExcelModel::where('faculty', $faculty)
-    //                 ->where('program', $program)
-    //                 ->where('semester', $semester)
-    //                 ->get();
-
-    // return view('adminHome', compact('data'));
-    // View::share('data', $data);
-    // return view('adminHome',$data);
-    // return view('adminHome')->with('datas', $datas);
-
-        $faculties = ExcelModel::select($faculty)->distinct()->get();
-        $programs = ExcelModel::where('faculty', $faculty)->where('program', $program)->distinct()->get();
-        // $semesters = ExcelModel::select('semester')->distinct()->get();
-        $semesters = ExcelModel::where('faculty', $faculty)
-        ->where('program', $program)
-        ->select('semester')
-        ->distinct()
-        ->get();
-        // $faculty = $request->input('faculty');
-        // $program = $request->input('program');
-        // $semester = $request->input('semester');
-        
-        $data = ExcelModel::where('faculty', $faculties)
-                        ->where('program', $programs)
-                        ->where('semester', $semesters)
-                        ->get();
-                        dd($data);
-                        return view('adminHome')->with('data', $data)
-                        ->with('faculty', $faculties)
-                        ->with('programs', $programs)
-                        ->with('semesters', $semesters);
-  }
 }   
   

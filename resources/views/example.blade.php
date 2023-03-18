@@ -1,4 +1,4 @@
-@extends('layouts.app')
+ @extends('layouts.app')
 
 @section('content')
 
@@ -15,14 +15,10 @@
 
                             <div class="col-md-6">
                                 <select id="faculty" name="faculty" class="form-control">
-                                            {{-- <option value="">-- Select Faculty --</option> --}}
-                                    {{-- {{dd($faculties)}} --}}
-                                           {{-- @foreach ($faculties as $faculty)
-                                        <option value="{{$faculty->faculty}}">{{$faculty->faculty}}</option>
-                                    @endforeach --}}
-                                    <option value="">-- Select Faculty --</option>
-                                    <option value="Science and Technology">Science and Technology</option>
-                                    <option value="Management">Management</option>
+                                            <option value="">-- Select Faculty --</option>
+                                    @foreach ($faculties as $faculty)
+                                        <option value="{{ $faculty  ->faculty }}">{{ $faculty->faculty}}</option>
+                                    @endforeach
 
                                 </select>
                             </div>
@@ -32,14 +28,9 @@
                         <div class="col-md-6">
                             <select id="program" name="program" class="form-control">
                                 <option value="">-- Select Program --</option> --}}
-                                {{-- @foreach($programs as $program)
+                                @foreach($programs as $program)
                                     <option value="{{ $program->program }}">{{ $program->program}}</option>
-                                @endforeach --}}
-                                <option value="BE Computer">BE Computer</option>
-                                <option value="BE Civil">BE Civil</option>
-                                <option value="BBA">BBA</option>
-                                <option value="BBA">BIT</option>
-                                <option value="BBA">BCA</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>    
@@ -49,12 +40,9 @@
                             <div class="col-md-6">
                                 <select id="semester" name="semester" class="form-control">
                                     <option value="">-- Select Semester --</option>
-                                        {{-- @foreach($semesters as $semester)
+                                        @foreach($semesters as $semester)
                                             <option value="{{ $semester->semester }}">{{ $semester->semester }}</option>
-                                        @endforeach --}}
-                                        @for ($i = 1; $i <= 8; $i++)
-                                        <option value='{{$i}}'>{{$i}} </option>
-                                    @endfor
+                                        @endforeach
                                 </select>
                             </div>
                             
@@ -89,8 +77,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                           
-                            @foreach($students as $student)
+                            @foreach($data as $student)
                                 <tr>    
                                     <td>{{$student->studentid }}</td>
                                     <td>{{$student->name }}</td>
@@ -108,3 +95,4 @@
     </div>
 </div>
 @endsection 
+{{--  --}}

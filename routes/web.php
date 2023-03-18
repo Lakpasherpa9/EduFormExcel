@@ -34,6 +34,11 @@ Route::get('/', function () {
  //  echo "Hello Users";
    return view('welcome');	
 });
+Route::get('/dashboard', function () {
+	// return view('welcome');
+  //  echo "Hello Users";
+	return view('welcome');	
+ });
 
 Route::get('/users',function(){
 	return view('home')->name('home');
@@ -50,6 +55,8 @@ Route::view('/navbar','navbar');
 
 //Middleware defined
 Route::prefix('admin')->middleware('auth','isAdmin')->group(function() {
+
+
 Route::get('/about',function(){return view('about');})->name('about');
 Route::get('/navbar',function(){return view('about');})->name('navbar');
 
@@ -62,6 +69,7 @@ Route::get('/PostDashboard',[AdminPostController::class,'PostDashboard'])->name(
  //searching in admin home route
  Route::get('/students', [StudentController::class, 'viewStudents'])->name('viewstudents');
 
+ 
  Route::get('/search', [ExcelController::class,'search'])->name('search');
 //excel Routes
 Route::get('/file-import',[ExcelController::class,'importView'])->name('importview');
@@ -89,6 +97,11 @@ Route::post('/import',[ExcelController::class,'import'])->name('import');
 	  Route::get('/storeSingleEmail{id}', [emailController::class, 'emailView'])->name('emailView');
 	  
 	  Route::post('/storeSingleEmail{id}', [emailController::class, 'storeSingleEmail'])->name('storeSingleEmail');
+
+
+	  //Admin password REset
+
+
 });
 
 

@@ -3,6 +3,7 @@
 namespace App\Imports;
 use Illuminate\Http\Request;
 use App\Models\ExcelModel;
+use App\Models\User;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -25,7 +26,7 @@ class UsersImport implements ToModel, WithHeadingRow
 
     public function __construct(){
         // $this->users= ExcelModel::select('id','studentId','name','email')-> get();
-         $this->users= ExcelModel::select('id','studentid','name','email','faculty','program','semester')-> get();
+         $this->users= ExcelModel::select('id','studentid','name','email','faculty','program','semester','password')-> get();
     
 
     }
@@ -102,7 +103,8 @@ class UsersImport implements ToModel, WithHeadingRow
            'email'    => $row['email'], 
            'faculty'    => $row['faculty'], 
            'program'    => $row['program'], 
-           'semester'    => $row['semester'], 
+           'semester'    => $row['semester'],
+           'password' => Hash::make($row['password']),
            //'password' => Hash::make($row['password']),
             ]);
        

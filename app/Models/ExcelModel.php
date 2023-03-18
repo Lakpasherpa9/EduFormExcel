@@ -27,6 +27,8 @@ class ExcelModel extends Authenticatable
         'faculty',
         'program',
         'semester',
+        //added new colum named password 
+        
       //  "value_id",
     ];
 

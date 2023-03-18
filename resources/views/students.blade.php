@@ -9,7 +9,7 @@
 
                 <div class="card-body">
                     <form method="GET" action="route('students.index') ">
-                        <divr class="form-group row">
+                        <div class="form-group row">
                             <label for="faculty" class="col-md-4 col-form-label text-md-right">Faculty</label>
 
                             <div class="col-md-6">
@@ -19,7 +19,7 @@
                                     <option value="Management">Management</option>
                                 </select>
                             </div>
-                        </divr>
+                        </div>
 
                         <div class="form-group row">
                             <label for="program" class="col-md-4 col-form-label text-md-right">Program</label>
@@ -78,7 +78,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                           @if(coutn($students))
+                           @if(count($students))
                             @foreach ($students as $student)
                                 <tr>
                                     <td>$student->studentid </td>

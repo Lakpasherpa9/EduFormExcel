@@ -37,6 +37,7 @@ class emailController extends Controller
         $details['contexttext'] = $request->contexttext;
         $details['contexturl'] = $request->contexturl;
         $details['endtext'] = $request->endtext;
+        
 
         Notification::send($user, new emailNotification($details));
 
