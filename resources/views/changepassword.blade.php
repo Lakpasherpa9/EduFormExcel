@@ -24,6 +24,13 @@
                 </div>
             
                 <button type="submit" class="btn btn-primary">Update Password</button>
+                @if(session()->has('success'))
+                      <div class="alert alert-success">
+                   {{ session()->get('success') }}
+                     </div>
+                    @endif
+                    
+               
             </form>
         </div>
     </div>

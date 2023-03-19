@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Database\Eloquent\Model;
 
-class AdminController extends Controller
+class ChangePasswordsController extends Controller
 {
     public function showPasswordForm()
     {
@@ -27,7 +29,8 @@ class AdminController extends Controller
         Auth::user()->update([
             'password' => Hash::make($request->input('new_password')),
         ]);
-
+        Session::flush();
+        Session::forget('auth');
         return redirect()->back()->with('success', 'Your password has been updated.');
     }
 }

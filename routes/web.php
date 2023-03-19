@@ -12,7 +12,7 @@ use App\Http\Controllers\PaymentController;
 // use App\Http\Controllers\Auth\LoginController;
 use App\Notifications\EmailNotification;
 use App\Http\Controllers\studentController;
-use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\ChangePasswordsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +31,7 @@ Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/adminhome', [App\Http\Controllers\HomeController::class, 'adminHome'])->name('admin.home')->middleware('isAdmin');
 Route::get('/', function () {
+
    // return view('welcome');
  //  echo "Hello Users";
    return view('welcome');	
@@ -103,11 +104,23 @@ Route::post('/import',[ExcelController::class,'import'])->name('import');
 
 
 	  //Admin password REset
-Route::get('/channepassword',[ChangePasswordController::class,'showPasswordForm'])->name('admin.update.password');	
+Route::get('/change/password',[ChangePasswordsController::class,'showPasswordForm'])->name('change-password');	
+Route::post('/update/password',[ChangePasswordsController::class,'updatePassword'])->name('admin.update.password');
+
+//routes for the payment details
+
+Route::post('/payments', [PaymentController::class, 'store'])->name('store');
+	Route::post('paymentdetails',[PaymentController::class,'paymentdetails'])->name('paymentdetails');
+	//Send PDF through mail
+	Route::get('/sendreport/{id}/{email}', [pdfController::class, 'index'])->name('admitCard');
+	// Route::get('/sendreport', [pdfController::class, 'index'])->name('admitCard');
+	Route::get('/viewPayments',[PaymentController::class,'paidpayments'])->name('paidpayments');
+
 
 });
-
-
+// Route for the students page 
+Route::get('student/change/password',[ChangePasswordsController::class,'showPasswordForm'])->name('students-change-password');	
+Route::post('student/update/password',[ChangePasswordsController::class,'updatePassword'])->name('student.update.password');
 	// Route::get('/export-users',[UserController::class,'UsersExport'])->name('usersExport');
 	// Route::get('/records',[ExcelController::class,'index'])->name('viewrecords');
 
@@ -128,8 +141,8 @@ Route::get('/viewposts',[AdminPostController::class,'index'])->name('posts.index
 
 
 //payment routes
-Route::get('/payment', [PaymentController::class, 'create'])->name('create');
-Route::post('/payments', [PaymentController::class, 'store'])->name('store');
+// Route::get('/payment', [PaymentController::class, 'create'])->name('create');
+// Route::post('/payments', [PaymentController::class, 'store'])->name('store');
 
 
 

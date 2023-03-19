@@ -95,7 +95,7 @@
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @guest
-                            @if (Route::has('login'))
+                            @if (Route::has('login'))   
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
@@ -112,24 +112,57 @@
                                     {{ Auth::user()->name }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                {{-- <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
-                                    </a> 
+                                    </a>  --}}
                                     {{-- Change pasword Ko code Suru --}}
-                                    <a class="dropdown-item" href="{{ route('admin.update.password') }}"
+                                    {{-- <a class="dropdown-item" href="{{ route('admin.update.password') }}"
                                     onclick="event.preventDefault();
                                                   document.getElementById('change-password').submit();">
                                      {{ __('Change Password') }}
                                  </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        
+                                         --}}
+                                        {{-- @csrf
+                                    </form>
+                                </div> --}}
+                                @if (auth()->check() && auth()->user()->role == '1')   
+                                
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('change-password') }}">
+                                        {{ __('Change Password') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
                                 </div>
+                                @endif
+                                @if (auth()->check() && auth()->user()->role == '0')   
+                                
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('students-change-password') }}">
+                                        {{ __('Change Password') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                                @endif
+
                                 
                             </li>
                         @endguest

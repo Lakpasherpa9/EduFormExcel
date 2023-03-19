@@ -26,9 +26,7 @@ class UsersImport implements ToModel, WithHeadingRow
 
     public function __construct(){
         // $this->users= ExcelModel::select('id','studentId','name','email')-> get();
-         $this->user= ExcelModel::select('id','studentid','name','email','faculty','program','semester','password')-> get();
-    
-
+         $this->users= ExcelModel::select('id','studentid','name','email','faculty','program','semester','password')-> get();
     }
 
     //Method to count the number of rows.

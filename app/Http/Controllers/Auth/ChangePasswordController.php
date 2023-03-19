@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\Model;
@@ -45,7 +46,9 @@ class ChangePasswordController extends Controller
 
         $user->password = Hash::make($request->input('new_password'));
         $user->save();
-
-        return redirect()->route('/dashboard')->with('success', 'Your password has been changed.');
+        // Session::forget('auth');
+        Session::flush();
+        Session::forget('auth');
+        return redirect()->route('login')->with('success', 'Your password has been changed.');
     }
 }
