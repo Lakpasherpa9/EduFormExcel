@@ -64,6 +64,17 @@
                 </a>
                 @endif
                 @endif
+                @if (auth()->check() && auth()->user()->role == '1')
+                <a class="navbar-brand" href="{{route('paidpayments')}}">
+                    {{ ' Payments Table' }}
+                </a>
+                @endif
+                {{-- @if (auth()->check() && auth()->user()->role == '1')
+                <a class="navbar-brand" href="{{route('admitCard')}}">
+                    {{ ' Admit card' }}
+                </a>
+                @endif --}}
+                
                 {{-- @if (auth()->check() && auth()->user()->role == '0')
                 <ul class="navbar-nav me-auto">
                     <a class="navbar-brand" href="{{ route('create') }}">
@@ -79,7 +90,7 @@
                 </ul>
                 @endif
                 <ul class="navbar-nav me-auto">
-                    <a class="navbar-brand" href="{{ route('about') }}">
+                    <a class="navbar-brand" href="{{ route('abouts') }}">
                         {{ 'About' }}  
                     </a>
                 </ul>
@@ -131,10 +142,13 @@
                                     </form>
                                 </div> --}}
                                 @if (auth()->check() && auth()->user()->role == '1')   
-                                
+                            
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('change-password') }}">
                                         {{ __('Change Password') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('admin.create') }}">
+                                        {{ __('Add Admin') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -145,6 +159,7 @@
                                         @csrf
                                     </form>
                                 </div>
+                                
                                 @endif
                                 @if (auth()->check() && auth()->user()->role == '0')   
                                 

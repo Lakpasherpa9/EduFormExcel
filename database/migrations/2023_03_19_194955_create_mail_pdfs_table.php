@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddPasswordsToExcelsTable extends Migration
+class CreateMailPdfsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class AddPasswordsToExcelsTable extends Migration
      */
     public function up()
     {
-        Schema::table('excels', function (Blueprint $table) {
-            $table->string('password')->default('')->nullable();
+        Schema::create('mail_pdfs', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->longText('description');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class AddPasswordsToExcelsTable extends Migration
      */
     public function down()
     {
-        Schema::table('excels', function (Blueprint $table) {
-            $table->dropColumn('password');
-        });
+        Schema::dropIfExists('mail_pdfs');
     }
 }

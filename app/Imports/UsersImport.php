@@ -26,7 +26,7 @@ class UsersImport implements ToModel, WithHeadingRow
 
     public function __construct(){
         // $this->users= ExcelModel::select('id','studentId','name','email')-> get();
-         $this->users= ExcelModel::select('id','studentid','name','email','faculty','program','semester','password')-> get();
+         $this->user= ExcelModel::select('id','studentid','name','email','faculty','program','semester','password')-> get();
     }
 
     //Method to count the number of rows.
@@ -114,17 +114,15 @@ class UsersImport implements ToModel, WithHeadingRow
 
     //    ]);
        //alternative 1
-    $user = new User([
-    'studentid' => $row['studentId'],
-    'name' => $row['name'],
-    'email' => $row['email'],
-    'password' => Hash::make($row['password']),
-    'role' => '0',
-]);
-    $user->save();
-
-
-} 
+//     $user = new User([
+//     'studentid' => $row['studentId'],
+//     'name' => $row['name'],
+//     'email' => $row['email'],
+//     'password' => Hash::make($row['password']),
+//     'role' => '0',
+// ]);
+//     $user->save();
+// } 
 //Model for importing the name email and password field to user table
 // public function models(array $row)
 // {
@@ -135,4 +133,5 @@ class UsersImport implements ToModel, WithHeadingRow
 //         'password' => Hash::make($row['password'])
 //     ]);
 // }
+}
 }
