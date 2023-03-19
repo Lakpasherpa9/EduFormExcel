@@ -12,6 +12,7 @@ use App\Http\Controllers\PaymentController;
 // use App\Http\Controllers\Auth\LoginController;
 use App\Notifications\EmailNotification;
 use App\Http\Controllers\studentController;
+use App\Http\Controllers\ChangePasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +47,8 @@ Route::get('/users',function(){
 // Route::view('/about','About');
 // Route::view('/khalti','khalti');
 Route::view('/navbar','navbar');
+Route::get('/about/students',function(){return view('about');})->name('abouts');
+
 // Route::get('/khalti',function(){return view('about');})->name('khalti');
 
 // Route::get('/home', [\App\Http\Controllers\Auth\LoginController::class, 'login'])->name('home');
@@ -100,7 +103,7 @@ Route::post('/import',[ExcelController::class,'import'])->name('import');
 
 
 	  //Admin password REset
-
+Route::get('/channepassword',[ChangePasswordController::class,'showPasswordForm'])->name('admin.update.password');	
 
 });
 

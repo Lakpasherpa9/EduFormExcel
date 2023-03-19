@@ -26,7 +26,7 @@ class UsersImport implements ToModel, WithHeadingRow
 
     public function __construct(){
         // $this->users= ExcelModel::select('id','studentId','name','email')-> get();
-         $this->users= ExcelModel::select('id','studentid','name','email','faculty','program','semester','password')-> get();
+         $this->user= ExcelModel::select('id','studentid','name','email','faculty','program','semester','password')-> get();
     
 
     }
@@ -97,7 +97,6 @@ class UsersImport implements ToModel, WithHeadingRow
      
         return new ExcelModel([
             //
-          
           'studentid' => $row['studentid'],
             'name'     => $row['name'],
            'email'    => $row['email'], 
@@ -107,8 +106,35 @@ class UsersImport implements ToModel, WithHeadingRow
            'password' => Hash::make($row['password']),
            //'password' => Hash::make($row['password']),
             ]);
-       
+           //Code to save the name email and password of excel file to usrs database
 
-           
-    }
+    //    return new User([
+    //     'studentid' => $row['studentId'],
+    //     'name'     => $row['name'],
+    //        'email'    => $row['email'], 
+    //        'password' => Hash::make($row['password']),
+
+    //    ]);
+       //alternative 1
+    $user = new User([
+    'studentid' => $row['studentId'],
+    'name' => $row['name'],
+    'email' => $row['email'],
+    'password' => Hash::make($row['password']),
+    'role' => '0',
+]);
+    $user->save();
+
+
+} 
+//Model for importing the name email and password field to user table
+// public function models(array $row)
+// {
+//     return new User([
+//         'studentid' => $row['studentid'],
+//         'name' => $row['name'],
+//         'email' => $row['email'],
+//         'password' => Hash::make($row['password'])
+//     ]);
+// }
 }

@@ -39,7 +39,7 @@
                                 <option value="BE Civil">BE Civil</option>
                                 <option value="BBA">BBA</option>
                                 <option value="BBA">BIT</option>
-                                <option value="BBA">BCA</option>
+                                <option value="BCA">BCA</option>
                             </select>
                         </div>
                     </div>    
@@ -89,7 +89,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                           
+                           @if(isset($students))
                             @foreach($students as $student)
                                 <tr>    
                                     <td>{{$student->studentid }}</td>
@@ -100,6 +100,7 @@
                                     <td>{{$student->semester}} </td>
                                 </tr>
                             @endforeach
+                            @endif
                         </tbody>
                     </table>
                 </div>

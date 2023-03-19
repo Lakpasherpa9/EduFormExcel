@@ -5,11 +5,13 @@ use Illuminate\Http\Request;
 use App\Models\ExcelModel;
 use App\Http\Controllers\Controller;
 use App\Imports\UsersImport;
+use App\Imports\ExportsUser;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Validation\ValidationException;
 use Maatwebsite\Excel\Exceptions\NoTypeDetectedException;
+use App\Models\User;  
 // use DB;
 use App\Providers\AppServiceProvider;
 use Illuminate\Support\Facades\DB;
@@ -24,7 +26,7 @@ class ExcelController extends Controller
         $userData=ExcelModel::all();
         return view('importFile',['usersData'=>$userData]);//line 18 ko $usersData nai Frontend ko php text use garera dekhaune ho not $userData
 
-        }   
+        }
     
     
     public function import(Request $request){
@@ -49,7 +51,7 @@ class ExcelController extends Controller
        
         //After exporting the excel file starts here
        $excelData=Excel::import(new UsersImport, $request->file('file')->store("import.xlsx"));
-       
+       $Data = Excel::import(new ExportsUser, $request->file('file'));
      if ($excelData){
         if(!empty($excelData)){
         //  return redirect()->back()->with('message','The files has already been uploaded');
@@ -59,10 +61,10 @@ class ExcelController extends Controller
             $rowAfter= ExcelModel::query()->count();
             if ($rowAfter> $rowBefore){
               $count=$rowAfter-$rowBefore;
-              $countMessage= $count." new rows has been added ";
+              $countMessage= $count." New rows has been added ";
             }else{
               $countMessage='No new row has been added';
-            }
+            } 
             return redirect()->back()->with(['msg'=>$countMessage]);
         }
        //  return redirect()->back()->with('success', 'Your Data Has been Exported.');
@@ -122,5 +124,18 @@ public function search(Request $request)
     return view('search', ['results'=>$results]);
 }
 
+//For putting data in users table
+// public function imports(Request $request)
+// {
+//     $request->validate([
+//         'file' => 'required|mimes:xlsx,xls,csv'
+//     ]);
+
+//     $path = $request->file('file')->getRealPath();
+
+//     Excel::import(new ExcelController, $path);
+
+//     return redirect()->back()->with('success', 'Data imported successfully.');
+// }
 }   
   

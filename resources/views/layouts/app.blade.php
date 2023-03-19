@@ -64,13 +64,13 @@
                 </a>
                 @endif
                 @endif
-                @if (auth()->check() && auth()->user()->role == '1')
+                {{-- @if (auth()->check() && auth()->user()->role == '0')
                 <ul class="navbar-nav me-auto">
                     <a class="navbar-brand" href="{{ route('create') }}">
                         {{ 'Khalti Payment' }}  
                     </a>
                 </ul>
-                @endif
+                @endif --}}
                 @if (auth()->check() && auth()->user()->role == '0')
                 <ul class="navbar-nav me-auto">
                     <a class="navbar-brand" href="{{ route('create') }}">
@@ -80,7 +80,7 @@
                 @endif
                 <ul class="navbar-nav me-auto">
                     <a class="navbar-brand" href="{{ route('about') }}">
-                        {{ 'Home' }}  
+                        {{ 'About' }}  
                     </a>
                 </ul>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -117,9 +117,11 @@
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
-                                    </a> <a class="dropdown-item" href="{{ route('password.request') }}"
+                                    </a> 
+                                    {{-- Change pasword Ko code Suru --}}
+                                    <a class="dropdown-item" href="{{ route('admin.update.password') }}"
                                     onclick="event.preventDefault();
-                                                  document.getElementById('logout-form').submit();">
+                                                  document.getElementById('change-password').submit();">
                                      {{ __('Change Password') }}
                                  </a>
 
