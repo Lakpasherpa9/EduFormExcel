@@ -10,17 +10,17 @@ Notice Publication
 Email Sending
 
 ## Requirements
-PHP > v7|v8
-Laravel > v8
-MaatWebsite Excel: 3.1
-Swift-Mailer: 6.3
+ -PHP > v7|v8
+ -Laravel > v8
+ -MaatWebsite Excel: 3.1
+ -Swift-Mailer: 6.3
 
 ## Author
-@JObV9n
-@LakpaSherpa9
-@EmperialDyn
+ -@JObV9n(https://github.com/JObV9n) 
+ -@LakpaSherpa9(https://github.com/Lakpasherpa9)
+ -@EmperialDyn(https://github.com/EmperialDyn)
 
 ## License
-MIT License
+[MIT](License)
 
 Now, when this content is rendered as Markdown on GitHub or any Markdown-compatible platform, it will appear organized and formatted correctly.
