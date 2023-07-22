@@ -22,5 +22,3 @@ Email Sending
 
 ## License
 [MIT](License)
-
-Now, when this content is rendered as Markdown on GitHub or any Markdown-compatible platform, it will appear organized and formatted correctly.
